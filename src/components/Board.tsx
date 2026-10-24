@@ -1,6 +1,6 @@
 
 import { useState } from "react";
-import { View, Text, Pressable, StyleSheet } from "react-native";
+import { View, Text, Pressable } from "react-native";
 import Square from "./Square";
 
 type Cell = "X" | "O" | null;
@@ -55,10 +55,29 @@ export default function Board() {
   }
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Tic Tac Toe</Text>
+    <View
+      style={{
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
+      <Text
+        style={{
+          fontSize: 28,
+          fontWeight: "bold",
+          marginBottom: 20,
+        }}
+      >
+        Tic Tac Toe
+      </Text>
 
-      <Text style={styles.status}>
+      <Text
+        style={{
+          fontSize: 20,
+          marginBottom: 20,
+        }}
+      >
         {winner
           ? `Qalib: ${winner}`
           : isDraw
@@ -66,7 +85,14 @@ export default function Board() {
           : `Növbə: ${isXTurn ? "X" : "O"}`}
       </Text>
 
-      <View style={styles.board}>
+      <View
+        style={{
+          width: 300,
+          height: 300,
+          flexDirection: "row",
+          flexWrap: "wrap",
+        }}
+      >
         {squares.map((value, index) => (
           <Square
             key={index}
@@ -76,42 +102,24 @@ export default function Board() {
         ))}
       </View>
 
-      <Pressable style={styles.button} onPress={resetGame}>
-        <Text style={styles.buttonText}>Yenidən başlat</Text>
+      <Pressable
+        style={{
+          backgroundColor: "#333",
+          padding: 15,
+          borderRadius: 8,
+          marginTop: 25,
+        }}
+        onPress={resetGame}
+      >
+        <Text
+          style={{
+            color: "white",
+            fontSize: 16,
+          }}
+        >
+          Yenidən başlat
+        </Text>
       </Pressable>
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-  flex: 1,
-  justifyContent: "center",
-  alignItems: "center",
-},
-  title: {
-    fontSize: 28,
-    fontWeight: "bold",
-    marginBottom: 20,
-  },
-  status: {
-    fontSize: 20,
-    marginBottom: 20,
-  },
-  board: {
-    width: 300,
-    flexDirection: "row",
-    flexWrap: "wrap",
-  },
-  button: {
-    backgroundColor: "#333",
-    padding: 15,
-    borderRadius: 8,
-    marginTop: 25,
-  },
-  buttonText: {
-    color: "white",
-    fontSize: 16,
-  },
-});
-
